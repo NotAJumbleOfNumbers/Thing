@@ -14,6 +14,15 @@ config/name="New Game Project"
 run/main_scene="res://Node2D.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+window/stretch/aspect="keep"
+
+[global]
+
+filtering=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
