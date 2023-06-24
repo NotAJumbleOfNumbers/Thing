@@ -2,18 +2,31 @@ extends Node2D
 
 
 # Declare member variables here. Examples:
-# var a = 2
+export var attack = 0
 # var b = "text"
-
-
+signal selection(node)
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#position.x = 512
-	#position.y = 300
+	$Label.text = String(attack)
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+	var mouse_position = get_parent().get_global_mouse_position();
+	var heavy_rect = get_node("23F9").get_rect();
+	heavy_rect.position += get_node("23F9").global_position;
+	if heavy_rect.has_point(mouse_position):
+		attack += 1
+		$Label.text = String(attack)
+		if Input.is_action_just_pressed("mouse_click"):
+			emit_signal("selection", get_node("."))
+			attack += 991
+			$Label.text = String(attack)
+			pass
+		else:
+			pass
+		pass
 	pass
+
+

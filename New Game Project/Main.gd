@@ -1,25 +1,35 @@
 extends Node
 var level = 1
+var selfection = null
 onready var PlayerList = get_node("PlayerList");
 onready var EnemyList = get_node("EnemyList");
+onready var HandList = get_node("HandList");
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.center_window();
+	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	for i in range(PlayerList.get_children().size()):
-		var Card = PlayerList.get_children()[i];
-		Card.position.x = Card.position.x * 0.9 + (i*100-PlayerList.get_children().size()*50+50) * 0.1
-		Card.position.y = 0
-		pass
-	for i in range(EnemyList.get_children().size()):
-		var Card = EnemyList.get_children()[i];
-		Card.position.x = Card.position.x * 0.9 + (i*100-EnemyList.get_children().size()*50+50) * 0.1
-		Card.position.y = 0
-		pass
+	straighten_out_cards(PlayerList)
+	straighten_out_cards(EnemyList)
+	straighten_out_cards(HandList)
 	pass
 	
+
+func straighten_out_cards(array):
+	for i in range(array.get_children().size()):
+		var Card = array.get_children()[i];
+		Card.position.x = Card.position.x * 0.9 + (i*100-array.get_children().size()*50+50) * 0.1
+		Card.position.y = 0
+		pass
+
+
+func _on_Card_selection(node):
+	var card = get_node(node)
+	card.position.x = 1000
+	pass # Replace with function body.

@@ -5,6 +5,7 @@
 
 [node name="Card" type="Node2D"]
 script = ExtResource( 2 )
+attack = 3
 
 [node name="23F9" type="Sprite" parent="."]
 scale = Vector2( 1, 1.5 )
