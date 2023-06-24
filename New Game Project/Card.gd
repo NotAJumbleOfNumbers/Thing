@@ -17,16 +17,8 @@ func _process(_delta):
 	var heavy_rect = get_node("23F9").get_rect();
 	heavy_rect.position += get_node("23F9").global_position;
 	if heavy_rect.has_point(mouse_position):
-		attack += 1
-		$Label.text = String(attack)
 		if Input.is_action_just_pressed("mouse_click"):
 			emit_signal("selection", get_node("."))
-			attack += 991
-			$Label.text = String(attack)
-			pass
-		else:
-			pass
-		pass
-	pass
+
 
 

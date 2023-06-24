@@ -9,7 +9,9 @@ onready var HandList = get_node("HandList");
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.center_window();
-	
+	connect_cards(HandList)
+	connect_cards(PlayerList)
+	connect_cards(EnemyList)
 	pass # Replace with function body.
 
 
@@ -29,7 +31,13 @@ func straighten_out_cards(array):
 		pass
 
 
+func connect_cards(array):
+	for i in range(array.get_children().size()):
+		array.get_children()[i].connect("selection", self, "_on_Card_selection")
+		pass
+
+
 func _on_Card_selection(node):
-	var card = get_node(node)
-	card.position.x = 1000
+	var card = node
+	card.queue_free()
 	pass # Replace with function body.

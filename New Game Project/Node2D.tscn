@@ -73,5 +73,3 @@ position = Vector2( 512, 500 )
 [node name="Card" parent="HandList" instance=ExtResource( 4 )]
 
 [node name="Card2" parent="HandList" instance=ExtResource( 4 )]
-
-[connection signal="selection" from="EnemyList/Card" to="." method="_on_Card_selection"]
