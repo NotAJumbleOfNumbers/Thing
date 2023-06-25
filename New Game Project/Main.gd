@@ -74,9 +74,17 @@ func load_level(number):
 	var loadinglevel : PackedScene = load("res://levels/level1.tscn")
 # warning-ignore:unused_variable
 	var loadedlevel = loadinglevel.instance()
-	add_child(loadedlevel)
+	EnemyList.queue_free();
+	PlayerList.queue_free();
+	HandList.queue_free();
+	EnemyList = loadedlevel.get_node("EnemyList");
+	PlayerList = loadedlevel.get_node("PlayerList");
+	HandList = loadedlevel.get_node("HandList");
+	loadedlevel.remove_child(EnemyList);
+	loadedlevel.remove_child(PlayerList);
+	loadedlevel.remove_child(HandList);
+	add_child(EnemyList);
+	add_child(PlayerList);
+	add_child(HandList);
+	loadedlevel.queue_free();
 	won = false
-	for array in [PlayerList, EnemyList, HandList]:
-		for i in range($Level.array.get_children().size()):
-				array.add_child($Level.array.get_children()[i])
-	pass
