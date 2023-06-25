@@ -11,7 +11,6 @@ onready var HandList = get_node("HandList");
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	OS.center_window();
-	connect_cards()
 	load_level(1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -88,3 +87,4 @@ func load_level(number):
 	add_child(HandList);
 	loadedlevel.queue_free();
 	won = false
+	connect_cards()
