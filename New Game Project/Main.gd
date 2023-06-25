@@ -76,6 +76,9 @@ func load_level(number):
 	EnemyList.queue_free();
 	PlayerList.queue_free();
 	HandList.queue_free();
+	remove_child(EnemyList);
+	remove_child(PlayerList);
+	remove_child(HandList);
 	EnemyList = loadedlevel.get_node("EnemyList");
 	PlayerList = loadedlevel.get_node("PlayerList");
 	HandList = loadedlevel.get_node("HandList");
