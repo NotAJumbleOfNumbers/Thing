@@ -1,5 +1,5 @@
-extends Button
-
+extends Node
+export var starting_energy = 3  
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -12,7 +12,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
-func _on_PreviousButton_pressed():
-	get_node("/root/Main").level -= 1
-	pass # Replace with function body.
+#func _process(delta):
+#	pass
