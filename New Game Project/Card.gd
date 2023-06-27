@@ -5,6 +5,7 @@ extends Node2D
 export var attack = 1
 export var health = 3
 export var cost = 2
+export var taunt = 0
 export var description = "[center]Test description.  This bird is so silly!!![/center]"
 export var icon = preload("res://icon.png")
 
@@ -12,6 +13,8 @@ export var icon = preload("res://icon.png")
 signal selection(node)
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	position.x = 0
+	position.y = 0
 	$Label.text = String(attack)
 	$Label2.text = String(health)
 	$Label3.text = String(cost)
