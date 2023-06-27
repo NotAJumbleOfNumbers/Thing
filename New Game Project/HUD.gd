@@ -29,18 +29,25 @@ func _on_PreviousButton_pressed():
 	if level > 1:
 		level -= 1
 		emit_signal("new_level", level)
+		get_node("/root/Main/Sound/restart").play()
 
 
 func _on_NextButton_pressed():
 	if level < 4:
 		level += 1
 		emit_signal("new_level", level)
+		get_node("/root/Main/Sound/restart").play()
 
 
 func _on_DeselectButton_pressed():
 	get_node("/root/Main").selection = null
+	get_node("/root/Main/Sound/deselect").play()
 	pass # Replace with function body.
 
 
 func _on_RestartButton_pressed():
 	emit_signal("new_level", level)
+	get_node("/root/Main/Sound/restart").play()
+
+func _on_button_down():
+	get_node("/root/Main/Sound/click").play() # Replace with function body.

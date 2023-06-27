@@ -99,7 +99,11 @@ margin_bottom = 96.0
 text = "Enemy"
 align = 1
 
+[connection signal="button_down" from="PreviousButton" to="." method="_on_button_down"]
 [connection signal="pressed" from="PreviousButton" to="." method="_on_PreviousButton_pressed"]
+[connection signal="button_down" from="DeselectButton" to="." method="_on_button_down"]
 [connection signal="pressed" from="DeselectButton" to="." method="_on_DeselectButton_pressed"]
+[connection signal="button_down" from="NextButton" to="." method="_on_button_down"]
 [connection signal="pressed" from="NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="button_down" from="RestartButton" to="." method="_on_button_down"]
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]

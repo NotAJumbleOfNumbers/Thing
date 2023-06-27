@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Card.tscn" type="PackedScene" id=3]
 [ext_resource path="res://download.jpg" type="Texture" id=4]
+[ext_resource path="res://sfx/won4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sfx/invalid.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sfx/playhandpan.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sfx/select.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sfx/activateharp.ogg" type="AudioStream" id=9]
+[ext_resource path="res://sfx/click1.ogg" type="AudioStream" id=10]
+[ext_resource path="res://sfx/unselect.ogg" type="AudioStream" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -39,3 +46,27 @@ position = Vector2( 512, 500 )
 cost = 3
 
 [node name="HUD" parent="." instance=ExtResource( 2 )]
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="win" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 5 )
+
+[node name="invalid" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 6 )
+
+[node name="playcard" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 7 )
+
+[node name="select" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 8 )
+
+[node name="restart" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 9 )
+volume_db = -5.0
+
+[node name="click" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 10 )
+
+[node name="deselect" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 11 )
