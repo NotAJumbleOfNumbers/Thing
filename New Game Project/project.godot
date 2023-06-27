@@ -30,6 +30,12 @@ theme/custom="res://newnewtheme.tres"
 theme/custom_font="res://new_dynamicfont_small.tres"
 theme=false
 
+[importer_defaults]
+
+ogg_vorbis={
+"loop": false
+}
+
 [input]
 
 mouse_click={

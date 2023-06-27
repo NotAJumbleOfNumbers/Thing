@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/activateglockenspiel.ogg-e4f2e0858bfba10578f22298f02abf8c.oggstr"
+
+[deps]
+
+source_file="res://sfx/activateglockenspiel.ogg"
+dest_files=[ "res://.import/activateglockenspiel.ogg-e4f2e0858bfba10578f22298f02abf8c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
