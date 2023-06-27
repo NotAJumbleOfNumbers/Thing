@@ -20,9 +20,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	straighten_out_cards()
-	if EnemyList.get_children().size() == 0:
-		won = true
-		selection = null
 
 func straighten_out_cards():
 	for array in [PlayerList, EnemyList, HandList]:
@@ -60,16 +57,63 @@ func perform_action(first_card, second_card):
 func fight(first_card, second_card):
 	second_card.health -= first_card.attack
 	first_card.health -= second_card.attack
+	if first_card.cleaving:
+		if second_card.get_index() > 0:
+			EnemyList.get_children()[second_card.get_index()-1].health -= first_card.attack
+		if second_card.get_index() < EnemyList.get_children().size()-1:
+			EnemyList.get_children()[second_card.get_index()+1].health -= first_card.attack
+	if second_card.cleaving:
+		if first_card.get_index() > 0:
+			PlayerList.get_children()[first_card.get_index()-1].health -= second_card.attack
+		if second_card.get_index() < PlayerList.get_children().size()-1:
+			PlayerList.get_children()[first_card.get_index()+1].health -= second_card.attack
+	second_card.attack += second_card.attackGainedAfterAttack
+	first_card.attack += first_card.attackGainedAfterAttack
 	cleanup()
 
 func cleanup():
-	for array in [PlayerList, EnemyList]:
+	var cleanup_again = false
+	for array in [EnemyList, PlayerList]:
+		var to_be_deleted = []
 		for i in range(array.get_children().size()):
 			if array.get_children()[i].health <= 0:
-				array.get_children()[i].queue_free()
+				energy += array.get_children()[i].energy_on_death
+				if array.get_children()[i].energy_overkill:
+					energy -= min(array.get_children()[i].health, 0)
+				to_be_deleted.append(array.get_children()[i])
+		for deleted_card in to_be_deleted:
+			if deleted_card.damage_on_death != 0:
+				if array == EnemyList:
+					for damaged_card in PlayerList.get_children():
+						damaged_card.health -= deleted_card.damage_on_death
+						cleanup_again = true
+				else:
+					for damaged_card in EnemyList.get_children():
+						damaged_card.health -= deleted_card.damage_on_death
+						cleanup_again = true
+			if deleted_card.bodies_on_death[0] != 0:
+				for _j in range(min(deleted_card.bodies_on_death[0], 7-array.get_children().size())):
+					var loadingcard : PackedScene = load("res://Card.tscn")
+					var loadedcard = loadingcard.instance()
+					loadedcard.attack = deleted_card.bodies_on_death[1]
+					loadedcard.health = deleted_card.bodies_on_death[2]
+					array.add_child(loadedcard)
+			deleted_card.queue_free()
+			array.remove_child(deleted_card)
+	if cleanup_again == true:
+		cleanup()
+	else:
+		for array in [EnemyList, PlayerList]:
+			for i in range(array.get_children().size()):
+				array.get_children()[i].attack = clamp(array.get_children()[i].attack, 0, 99)
+				array.get_children()[i].health = clamp(array.get_children()[i].health, 0, 99)
+		energy = clamp(energy, 0, 20)
+		if EnemyList.get_children().size() == 0:
+			won = true
+			selection = null
 
 func play(card):
-	if energy >= card.cost:
+	if energy >= card.cost and PlayerList.get_children().size() < 7:
 		energy -= card.cost
 		card.get_parent().remove_child(card)
 		PlayerList.add_child(card)

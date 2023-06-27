@@ -1,5 +1,5 @@
 extends Node
-export var starting_energy = 3  
+export var starting_energy = 3
 
 # Declare member variables here. Examples:
 # var a = 2

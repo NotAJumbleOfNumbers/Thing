@@ -32,7 +32,7 @@ func _on_PreviousButton_pressed():
 
 
 func _on_NextButton_pressed():
-	if level < 2:
+	if level < 4:
 		level += 1
 		emit_signal("new_level", level)
 

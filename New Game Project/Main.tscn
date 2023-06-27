@@ -34,7 +34,6 @@ position = Vector2( 512, 500 )
 [node name="Card" parent="HandList" instance=ExtResource( 3 )]
 
 [node name="Card3" parent="HandList" instance=ExtResource( 3 )]
-cost = 1
 
 [node name="Card2" parent="HandList" instance=ExtResource( 3 )]
 cost = 3
