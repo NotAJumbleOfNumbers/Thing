@@ -26,22 +26,20 @@ energy_overkill = true
 attack = 1
 health = 20
 cost = 3
-taunt = 1
 icon = ExtResource( 4 )
 
 [node name="Card3" parent="EnemyList" instance=ExtResource( 1 )]
 attack = 1
 health = 20
 cost = 3
-taunt = 2
 energy_on_death = -2
+deathtouch = true
 icon = ExtResource( 3 )
 
 [node name="Card2" parent="EnemyList" instance=ExtResource( 1 )]
 attack = 1
 health = 20
 cost = 3
-taunt = 2
 damage_on_death = 2
 icon = ExtResource( 5 )
 
@@ -71,6 +69,8 @@ icon = ExtResource( 8 )
 attack = 7
 health = 7
 cost = 4
+cleaving = true
+deathtouch = true
 
 [node name="Card3" parent="HandList" instance=ExtResource( 1 )]
 attackGainedAfterAttack = 1

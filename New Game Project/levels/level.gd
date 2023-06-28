@@ -1,5 +1,7 @@
 extends Node
 export var starting_energy = 3
+export var description = ""
+export var winning_description : String
 
 # Declare member variables here. Examples:
 # var a = 2

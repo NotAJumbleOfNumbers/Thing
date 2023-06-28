@@ -2,6 +2,7 @@ extends Node
 var energy = 3
 var won = false
 var selection = null
+var animating = false
 onready var PlayerList = get_node("PlayerList");
 onready var EnemyList = get_node("EnemyList");
 onready var HandList = get_node("HandList");
@@ -35,9 +36,14 @@ func connect_cards():
 
 func _on_Card_selection(node):
 	var card = node
+	if animating:
+		return
 	if selection == null:
-		selection = card
-		$Sound/select.play()
+		if card.get_parent() != get_node("EnemyList"):
+			selection = card
+			$Sound/select.play()
+		else:
+			$Sound/invalid.play()
 	else:
 		perform_action(selection, card)
 		selection = null
@@ -52,37 +58,75 @@ func perform_action(first_card, second_card):
 				highest_taunt = EnemyList.get_children()[i].taunt 
 		if second_card.taunt == highest_taunt:
 			fight(first_card, second_card)
+		else:
+			$Sound/invalid.play()
 	else:
 		$Sound/invalid.play()
 
 func fight(first_card, second_card):
+	$Sound/attack.play()
 	second_card.health -= first_card.attack
 	first_card.health -= second_card.attack
+	if first_card.deathtouch and first_card.attack > 0:
+		second_card.dying = true
+	if second_card.deathtouch and second_card.attack > 0:
+		first_card.dying = true
 	if first_card.cleaving:
 		if second_card.get_index() > 0:
 			EnemyList.get_children()[second_card.get_index()-1].health -= first_card.attack
+			if first_card.deathtouch and first_card.attack > 0:
+				EnemyList.get_children()[second_card.get_index()-1].dying = true
 		if second_card.get_index() < EnemyList.get_children().size()-1:
 			EnemyList.get_children()[second_card.get_index()+1].health -= first_card.attack
+			if first_card.deathtouch and first_card.attack > 0:
+				EnemyList.get_children()[second_card.get_index()+1].dying = true
 	if second_card.cleaving:
 		if first_card.get_index() > 0:
 			PlayerList.get_children()[first_card.get_index()-1].health -= second_card.attack
+			if second_card.deathtouch and second_card.attack > 0:
+				EnemyList.get_children()[first_card.get_index()-1].dying = true
 		if second_card.get_index() < PlayerList.get_children().size()-1:
 			PlayerList.get_children()[first_card.get_index()+1].health -= second_card.attack
+			if second_card.deathtouch and second_card.attack > 0:
+				EnemyList.get_children()[first_card.get_index()+1].dying = true
 	second_card.attack += second_card.attackGainedAfterAttack
 	first_card.attack += first_card.attackGainedAfterAttack
+	var tmp = second_card.vanilliser
+	if first_card.vanilliser:
+		second_card.taunt = 0
+		second_card.attackGainedAfterAttack = 0
+		second_card.cleaving = false
+		second_card.damage_on_death = 0
+		second_card.energy_on_death = 0
+		second_card.bodies_on_death = [0,0,0]
+		second_card.energy_overkill = 0
+		second_card.deathtouch = false
+		second_card.vanilliser = false
+	if tmp:
+		first_card.taunt = 0
+		first_card.attackGainedAfterAttack = 0
+		first_card.cleaving = false
+		first_card.damage_on_death = 0
+		first_card.energy_on_death = 0
+		first_card.bodies_on_death = [0,0,0]
+		first_card.energy_overkill = 0
+		first_card.deathtouch = false
+		first_card.vanilliser = false
 	cleanup()
+
 
 func cleanup():
 	var cleanup_again = false
 	for array in [EnemyList, PlayerList]:
 		var to_be_deleted = []
 		for i in range(array.get_children().size()):
-			if array.get_children()[i].health <= 0:
+			if array.get_children()[i].health <= 0 or array.get_children()[i].dying:
 				energy += array.get_children()[i].energy_on_death
 				if array.get_children()[i].energy_overkill:
 					energy -= min(array.get_children()[i].health, 0)
 				to_be_deleted.append(array.get_children()[i])
 		for deleted_card in to_be_deleted:
+			var card_pos = deleted_card.get_position_in_parent()
 			deleted_card.queue_free()
 			array.remove_child(deleted_card)
 			if deleted_card.damage_on_death != 0:
@@ -101,6 +145,8 @@ func cleanup():
 					loadedcard.attack = deleted_card.bodies_on_death[1]
 					loadedcard.health = deleted_card.bodies_on_death[2]
 					array.add_child(loadedcard)
+					array.move_child(loadedcard, card_pos)
+					loadedcard.connect("selection", self, "_on_Card_selection")
 	if cleanup_again == true:
 		cleanup()
 	else:

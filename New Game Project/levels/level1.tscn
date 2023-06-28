@@ -5,6 +5,7 @@
 
 [node name="Level" type="Node"]
 script = ExtResource( 2 )
+starting_energy = 20
 
 [node name="EnemyList" type="Node2D" parent="."]
 position = Vector2( 512, 150 )
@@ -13,6 +14,85 @@ position = Vector2( 512, 150 )
 attack = 1
 health = 20
 cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 1, 1, 1 ]
+energy_overkill = true
+
+[node name="Card2" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 3, 1, 1 ]
+energy_overkill = true
+
+[node name="Card3" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 3, 1, 1 ]
+energy_overkill = true
+
+[node name="Card4" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 3, 1, 1 ]
+energy_overkill = true
+
+[node name="Card5" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 1, 1, 1 ]
+energy_overkill = true
+
+[node name="Card6" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 1, 1, 1 ]
+energy_overkill = true
+
+[node name="Card7" parent="EnemyList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 1, 1, 1 ]
+energy_overkill = true
 
 [node name="PlayerList" type="Node2D" parent="."]
 position = Vector2( 512, 300 )
@@ -20,13 +100,14 @@ position = Vector2( 512, 300 )
 [node name="HandList" type="Node2D" parent="."]
 position = Vector2( 512, 500 )
 
-[node name="Card" parent="HandList" instance=ExtResource( 1 )]
-attack = 5
-
-[node name="Card2" parent="HandList" instance=ExtResource( 1 )]
-attack = 7
-health = 7
-cost = 4
-
-[node name="Card3" parent="HandList" instance=ExtResource( 1 )]
-cost = 1
+[node name="Card12" parent="HandList" instance=ExtResource( 1 )]
+attack = 1
+health = 20
+cost = 3
+taunt = 1
+attackGainedAfterAttack = 1
+cleaving = true
+damage_on_death = 1
+energy_on_death = 1
+bodies_on_death = [ 1, 1, 1 ]
+energy_overkill = true

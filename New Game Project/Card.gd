@@ -12,10 +12,13 @@ export var damage_on_death = 0
 export var energy_on_death = 0
 export var bodies_on_death : Array = [0, 0, 0]
 export var energy_overkill = false
+export var deathtouch = false
+export var vanilliser = false
 export var description = "[center]A bird that chirps.[/center]"
 export var icon = preload("res://icon.png")
 var base_attack 
 var base_health 
+var dying = false
 
 # var b = "text"
 signal selection(node)
@@ -61,10 +64,15 @@ func _process(delta):
 			traits_text = traits_text + "\nAfter attack, gains " + String(attackGainedAfterAttack) +" attack"
 		if energy_overkill:
 			traits_text = traits_text + "\nExcess damage is gained as energy"
+		if deathtouch:
+			traits_text = traits_text + "\nAny damage dealt by this card is lethal"
+		if vanilliser:
+			traits_text = traits_text + "\nWhen attacking another card, removes all of that card's traits"
 		if bodies_on_death[0] != 0:
 			traits_text = traits_text + "\nOn death, spawns " + String(bodies_on_death[0]) + " " + String(bodies_on_death[1]) + "/" + String(bodies_on_death[2]) + " creatures"
 		var format_string = "[center]Base stats: {atk} attack, {hp} health[/center]"+traits_text+"\n{desc}"
 		$Description.bbcode_text = format_string.format({"atk": base_attack, "hp":base_health, "desc":description})
+		$Description.rect_size.y = 0
 		$Description.visible = true
 		$NinePatchRect.visible = true
 		$Description.set_global_position(get_viewport().get_mouse_position())

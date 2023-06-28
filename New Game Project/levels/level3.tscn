@@ -16,13 +16,6 @@ position = Vector2( 512, 150 )
 attack = 1
 health = 20
 cost = 3
-taunt = 5
-attackGainedAfterAttack = 1
-cleaving = true
-damage_on_death = 2
-energy_on_death = 1
-bodies_on_death = [ 7, 2, 1 ]
-energy_overkill = true
 
 [node name="Card2" parent="EnemyList" instance=ExtResource( 1 )]
 attack = 1

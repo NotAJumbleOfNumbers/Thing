@@ -65,12 +65,12 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 546.0
+margin_left = 724.0
 margin_right = 1022.0
-margin_bottom = 45.0
+margin_bottom = 73.0
 theme = ExtResource( 5 )
 custom_fonts/font = SubResource( 3 )
-text = "3 Energy"
+text = "99 Energy"
 align = 2
 valign = 1
 script = ExtResource( 4 )
