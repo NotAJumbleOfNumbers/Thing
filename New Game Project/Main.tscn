@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sfx/click1.ogg" type="AudioStream" id=10]
 [ext_resource path="res://sfx/unselect.ogg" type="AudioStream" id=11]
 [ext_resource path="res://sfx/attack.ogg" type="AudioStream" id=12]
+[ext_resource path="res://sfx/Practical_Card_Archaeology.ogg" type="AudioStream" id=13]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -74,3 +75,24 @@ stream = ExtResource( 10 )
 
 [node name="deselect" type="AudioStreamPlayer" parent="Sound"]
 stream = ExtResource( 11 )
+
+[node name="music" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource( 13 )
+autoplay = true
+
+[node name="RandomCard" type="Button" parent="."]
+margin_left = 289.0
+margin_top = 3.0
+margin_right = 356.0
+margin_bottom = 28.0
+text = "Random Card"
+
+[node name="RandomCard2" type="Button" parent="."]
+margin_left = 398.0
+margin_top = 3.0
+margin_right = 503.0
+margin_bottom = 28.0
+text = "Random Enemy Card"
+
+[connection signal="pressed" from="RandomCard" to="." method="_on_RandomCard_pressed"]
+[connection signal="pressed" from="RandomCard2" to="." method="_on_RandomCard2_pressed"]

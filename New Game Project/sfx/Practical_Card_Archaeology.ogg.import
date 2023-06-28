@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Practical_Card_Archaeology.ogg-72c42db8a2d7fbe15d50fab92abf45fb.oggstr"
+
+[deps]
+
+source_file="res://sfx/Practical_Card_Archaeology.ogg"
+dest_files=[ "res://.import/Practical_Card_Archaeology.ogg-72c42db8a2d7fbe15d50fab92abf45fb.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

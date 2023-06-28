@@ -155,10 +155,10 @@ func cleanup():
 				array.get_children()[i].attack = clamp(array.get_children()[i].attack, 0, 99)
 				array.get_children()[i].health = clamp(array.get_children()[i].health, 0, 99)
 		energy = clamp(energy, 0, 20)
-		if EnemyList.get_children().size() == 0:
-			won = true
-			$Sound/win.play()
-			selection = null
+		# if EnemyList.get_children().size() == 0:
+			# won = true
+			# $Sound/win.play()
+			# selection = null
 
 func play(card):
 	if energy >= card.cost and PlayerList.get_children().size() < 7:
@@ -169,6 +169,28 @@ func play(card):
 		PlayerList.add_child(card)
 	else:
 		$Sound/invalid.play()
+
+func generate_random_card(array):
+	var loading_card : PackedScene = load("res://Card.tscn")
+	var loaded_card = loading_card.instance()
+	loaded_card.attack = floor(rand_range(0,11))
+	loaded_card.health = floor(rand_range(1,11))
+	loaded_card.taunt = floor(rand_range(0,4))
+	if randi()%2:
+		loaded_card.cleaving = true
+	loaded_card.attackGainedAfterAttack = floor(rand_range(0,6))
+	loaded_card.damage_on_death = floor(rand_range(0,6))
+	loaded_card.energy_on_death = floor(rand_range(0,6))
+	for i in range(3):
+		loaded_card.bodies_on_death[i] = floor(rand_range(0,6))
+	if randi()%2:
+		loaded_card.energy_overkill = true
+	if randi()%2:
+		loaded_card.deathtouch = true
+	if randi()%2:
+		loaded_card.vanilliser = true
+	array.add_child(loaded_card)
+	loaded_card.connect("selection", self, "_on_Card_selection")
 
 # warning-ignore:unused_argument
 func load_level(level):
@@ -198,3 +220,13 @@ func load_level(level):
 	selection = null
 	won = false
 	connect_cards()
+
+
+func _on_RandomCard_pressed():
+	if PlayerList.get_children().size() < 7:
+		generate_random_card(PlayerList)
+
+
+func _on_RandomCard2_pressed():
+	if EnemyList.get_children().size() < 7:
+		generate_random_card(EnemyList)
