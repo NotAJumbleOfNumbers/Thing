@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://72x72/2b06.png" type="Texture" id=1]
+[ext_resource path="res://72x72/1f916.png" type="Texture" id=2]
+[ext_resource path="res://levels/level.gd" type="Script" id=3]
+[ext_resource path="res://Card.tscn" type="PackedScene" id=4]
+[ext_resource path="res://72x72/1f0cf.png" type="Texture" id=5]
+[ext_resource path="res://72x72/1f3f5.png" type="Texture" id=6]
+
+[node name="Level" type="Node"]
+script = ExtResource( 3 )
+starting_energy = 4
+description = "Cleaving cards also damage the cards to the left and to the right of the attacked card."
+
+[node name="EnemyList" type="Node2D" parent="."]
+position = Vector2( 512, 150 )
+
+[node name="Card6" parent="EnemyList" instance=ExtResource( 4 )]
+attack = 4
+health = 4
+cost = 4
+description = "[center]It used to have an AI, but it was quickly gutted after it refused to attack anyone.[/center]"
+icon = ExtResource( 2 )
+
+[node name="Card3" parent="EnemyList" instance=ExtResource( 4 )]
+attack = 2
+health = 6
+cost = 5
+description = "[center]Tired of being removed from other card games, it made its way into this one.  Somehow.[/center]"
+icon = ExtResource( 5 )
+
+[node name="Card4" parent="EnemyList" instance=ExtResource( 4 )]
+attack = 2
+health = 6
+cost = 5
+description = "[center]Tired of being removed from other card games, it made its way into this one.  Somehow.[/center]"
+icon = ExtResource( 5 )
+
+[node name="Card5" parent="EnemyList" instance=ExtResource( 4 )]
+attack = 4
+health = 2
+cost = 3
+description = "[center]A bit silly, but mood lighteners are always a good thing.[/center]"
+icon = ExtResource( 6 )
+
+[node name="PlayerList" type="Node2D" parent="."]
+position = Vector2( 512, 300 )
+
+[node name="HandList" type="Node2D" parent="."]
+position = Vector2( 512, 500 )
+
+[node name="Card" parent="HandList" instance=ExtResource( 4 )]
+attack = 2
+health = 5
+cost = 4
+cleaving = true
+description = "[center]Forwards-thinking.[/center]"
+icon = ExtResource( 1 )

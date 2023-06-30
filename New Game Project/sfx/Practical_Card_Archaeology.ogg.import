@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Practical_Card_Archaeology.ogg-72c42db8a2d7fbe15d50f
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0

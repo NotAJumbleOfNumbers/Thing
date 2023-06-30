@@ -33,7 +33,7 @@ func _on_PreviousButton_pressed():
 
 
 func _on_NextButton_pressed():
-	if level < 4:
+	if level < 7:
 		level += 1
 		emit_signal("new_level", level)
 		get_node("/root/Main/Sound/restart").play()

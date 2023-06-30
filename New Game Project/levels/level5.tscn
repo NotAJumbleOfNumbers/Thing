@@ -48,5 +48,5 @@ icon = ExtResource( 3 )
 [node name="Card2" parent="HandList" instance=ExtResource( 1 )]
 attack = 2
 cost = 3
-description = "[center]Won't stop talking about their 'shareholders' while eating chips.[/center]"
+description = "[center]Won't stop talking about their 'shareholders'.[/center]"
 icon = ExtResource( 6 )

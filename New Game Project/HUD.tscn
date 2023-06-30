@@ -16,7 +16,6 @@ anchor_bottom = 1.0
 script = ExtResource( 1 )
 
 [node name="PreviousButton" type="Button" parent="."]
-visible = false
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 70.0
@@ -24,7 +23,6 @@ margin_bottom = 23.0
 text = "Previous"
 
 [node name="DeselectButton" type="Button" parent="."]
-visible = false
 margin_left = 3.0
 margin_top = 27.0
 margin_right = 72.0
@@ -32,7 +30,6 @@ margin_bottom = 47.0
 text = "Deselect"
 
 [node name="NextButton" type="Button" parent="."]
-visible = false
 margin_left = 147.0
 margin_top = 3.0
 margin_right = 214.0
@@ -100,6 +97,14 @@ margin_right = 548.0
 margin_bottom = 96.0
 text = "Enemy"
 align = 1
+
+[node name="Label7" type="Label" parent="."]
+margin_left = 286.0
+margin_right = 739.0
+margin_bottom = 71.0
+text = "Enemy"
+align = 1
+autowrap = true
 
 [connection signal="button_down" from="PreviousButton" to="." method="_on_button_down"]
 [connection signal="pressed" from="PreviousButton" to="." method="_on_PreviousButton_pressed"]

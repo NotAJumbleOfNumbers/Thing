@@ -155,10 +155,10 @@ func cleanup():
 				array.get_children()[i].attack = clamp(array.get_children()[i].attack, 0, 99)
 				array.get_children()[i].health = clamp(array.get_children()[i].health, 0, 99)
 		energy = clamp(energy, 0, 20)
-		# if EnemyList.get_children().size() == 0:
-			# won = true
-			# $Sound/win.play()
-			# selection = null
+		if EnemyList.get_children().size() == 0:
+			won = true
+			$Sound/win.play()
+			selection = null
 
 func play(card):
 	if energy >= card.cost and PlayerList.get_children().size() < 7:
@@ -201,6 +201,7 @@ func load_level(level):
 # warning-ignore:unused_variable
 	var loadedlevel = loadinglevel.instance()
 	energy = loadedlevel.starting_energy
+	$HUD/Label7.text = loadedlevel.description
 	EnemyList.queue_free();
 	PlayerList.queue_free();
 	HandList.queue_free();

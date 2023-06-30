@@ -76,6 +76,8 @@ func _process(delta):
 		$Description.visible = true
 		$NinePatchRect.visible = true
 		$Description.set_global_position(get_viewport().get_mouse_position())
+		$Description.rect_global_position.x = clamp($Description.rect_global_position.x, 0, 1024-$Description.rect_size.x)
+		$Description.rect_global_position.y = clamp($Description.rect_global_position.y, 0, 600-$Description.rect_size.y)
 		$NinePatchRect.rect_position.x = $Description.rect_position.x - 6
 		$NinePatchRect.rect_size.x = $Description.rect_size.x + 12
 		$NinePatchRect.rect_position.y = $Description.rect_position.y - 6

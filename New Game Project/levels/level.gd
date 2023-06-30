@@ -1,6 +1,6 @@
 extends Node
 export var starting_energy = 3
-export var description = ""
+export var description = "Click on a card you control, then click on an enemy to fight it."
 export var winning_description : String
 
 # Declare member variables here. Examples:
